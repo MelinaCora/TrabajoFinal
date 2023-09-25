@@ -57,7 +57,7 @@ namespace TP_obligatorio
 			return planetaConveniente;
 		}
 			
-		//metodos para agregar la propiedad del planeta
+		//metodos para verificar la propiedad del planeta
 		public bool EsPlanetadelaIA(string Propiedad)
 		{
 			return Propiedad.Equals("Azul", StringComparison.OrdinalIgnoreCase);
