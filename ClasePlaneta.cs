@@ -58,19 +58,19 @@ namespace TP_obligatorio
 		}
 			
 		//metodos para agregar la propiedad del planeta
-		public bool EsPlanetadelaIA()
+		public bool EsPlanetadelaIA(string Propiedad)
 		{
-			return Propiedad == "azul";
+			return Propiedad.Equals("Azul", StringComparison.OrdinalIgnoreCase);
 		}
 		
-		public bool EsPlanetadelJugador()
+		public bool EsPlanetadelJugador(string Propiedad)
 		{
-			return Propiedad == "rojo";
+			return Propiedad.Equals("Rojo", StringComparison.OrdinalIgnoreCase);
 		}
 		
-		public bool EsPlanetaNeutral()
+		public bool EsPlanetaNeutral(string Propiedad)
 		{
-			return Propiedad == "blanco";
+			return Propiedad.Equals("Blanco", StringComparison.OrdinalIgnoreCase);
 		}
 	}
 }
