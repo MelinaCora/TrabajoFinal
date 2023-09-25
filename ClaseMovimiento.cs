@@ -19,21 +19,4 @@ namespace TP_obligatorio
 			
 		}
 		
-		//metodo para hallar el planeta mas cercano
-		private Planeta PlanetaMasCercano(ArbolGeneral <Planeta> arbol; Planeta o; Planeta d;){
-			//REcorrer el arbol  desde un nodo hasta otro comparano si el planeta d tiene menos Flotas que el o 
-	    	{
-        	Planeta planetaMasCercano = origen;
-        	foreach (var hijo in nodoActual.Hijos)
-        	{
-            	// Llamar recursivamente a la función para cada hijo
-            	Planeta planetaHijoMasCercano = PlanetaMasCercano(hijo, origen, destino);
-
-            	// Comparar el número de naves del planeta más cercano actual con el del hijo
-            	if (planetaHijoMasCercano != null && planetaHijoMasCercano.Flotas < planetaMasCercano.Flotas)
-            	{
-                	planetaConveniente = planetaHijoMasCercano;
-            	}
-        	}
-			return planetaConveniente
-		}
+		
