@@ -38,19 +38,19 @@ namespace TP_obligatorio
 			
 			if (Hijos != null) //la lista de hijos debe ser distinta de nula
 			{
-        		foreach (var hijo in Hijos)
-        		{
+        			foreach (var hijo in Hijos)
+        			{
             	            	
-        			  // Llamar recursivamente a la función para cada hijo
-            		Planeta planetaHijoMasCercano = PlanetaMasCercano(arbol,hijo,d);
+        			 // Llamar recursivamente a la función para cada hijo
+            			Planeta planetaHijoMasCercano = PlanetaMasCercano(arbol,hijo,d);
 
-            		// Comparar el número de naves del planeta más cercano actual con el del hijo
-            		if (planetaHijoMasCercano != null && planetaHijoMasCercano.Flotas < planetaMasCercano.Flotas)
-            		{
-                		planetaConveniente = planetaHijoMasCercano;
-            		}
+            			// Comparar el número de naves del planeta más cercano actual con el del hijo
+            			if (planetaHijoMasCercano != null && planetaHijoMasCercano.Flotas < planetaMasCercano.Flotas)
+            				{
+                				planetaConveniente = planetaHijoMasCercano;
+            				}
             	
-        		}
+        			}
 			
 			}
 			
@@ -71,6 +71,18 @@ namespace TP_obligatorio
 		public bool EsPlanetaNeutral()
 		{
 			return Propiedad.Equals("Blanco", StringComparison.OrdinalIgnoreCase);
+		}
+
+		//metodo para agregar flotas a los planetas
+		public void AgregarFlotas(int FlotasParaAgregar) 
+		{
+			Flotas+=FlotasParaAgregar;
+		}
+
+		//metodo para disminuir flotas
+		public void DisminuirFlotas(int FlotasParaDisminuir)
+		{
+			Flotas-=FlotasParaDisminuir;
 		}
 	}
 }
