@@ -41,10 +41,10 @@ namespace TP_obligatorio
         			foreach (var hijo in Hijos)
         			{
             	            	
-        			 // Llamar recursivamente a la función para cada hijo
+        			
             			Planeta planetaHijoMasCercano = PlanetaMasCercano(arbol,hijo,d);
 
-            			// Comparar el número de naves del planeta más cercano actual con el del hijo
+            			// Comparar el número de flotas del planeta más cercano actual con el del hijo
             			if (planetaHijoMasCercano != null && planetaHijoMasCercano.Flotas < planetaMasCercano.Flotas)
             				{
                 				planetaConveniente = planetaHijoMasCercano;
