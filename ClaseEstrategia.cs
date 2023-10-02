@@ -31,7 +31,7 @@ namespace TP_obligatorio
     		return camino;
 		}
 		
-		public string Consulta2(ArbolGeneral<Planeta> arbol)//usar ObtenerDescendientes
+		public string Consulta2(ArbolGeneral<Planeta> arbol)
 		{
 			List<string> planetasDescendientes = ObtenerDescendientes(arbol, BotPlaneta);
         		return "Planetas en los descendientes del nodo del Bot: " + string.Join(", ", planetasDescendientes);
@@ -52,10 +52,10 @@ namespace TP_obligatorio
 			List<Planeta> planetasEnPreorden = new List<Planeta>();
     			RecorridoPreorden(arbol, planetaBot, planetasEnPreorden);
 
-    			// Obtén los nombres de los planetas en preorden
+    			
     			List<string> nombresPlanetasEnPreorden = planetasEnPreorden.Select(p => p.Nombre).ToList();
 
-    			// Convierte la lista de nombres en un string separado por comas
+    			// Convierte la lista de nombres en un string separado por comas con el join
     			string listaPlanetasEnPreorden = string.Join(", ", nombresPlanetasEnPreorden);
 
     			return listaPlanetasEnPreorden;
