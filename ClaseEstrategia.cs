@@ -39,12 +39,11 @@ namespace TP_obligatorio
 		
 		public string Consulta3()
 		{
-			//esta consulta debe recorrer por niveles el árbol general que pasamos por parámetro y de cada nivel
-			//sumar las poblaciones de cada nodo/planeta. tendremos una variable para la sumatoria total. 
-			//luego, cada nivel del árbol general debe contar con una variable para poder guardar la sumatoria de 
-			//sus poblaciones.
-			//al final, se debe imprimir un porcentaje para cada uno de los niveles que estaran guardados en un 
-			//diccionario
+			//recorrer por niveles
+			//cada nivel tiene una lista de listas conformada por el nombre del planeta y su poblacion
+			//utilizando el metodo de encolar para agregar los datos y sumarlos
+			//se crea nueva lista por nivel
+			//imprimir la informacion calculando el porcentaje
 		}
 		
 		private List<string> ObtenerDescendientes(arbol, Botplaneta) //devuelve una lista con los hijos de determinado planeta
