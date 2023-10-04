@@ -31,4 +31,51 @@ namespace TP_obligatorio
         	    }
     	    	}
         }
+	//metodo para recorrer por niveles y acceder a las poblaciones 
+	public void RecorridoPorNiveles()
+	{
+		if (Raiz == null)
+        	return;
+
+    		Queue<ArbolGeneral<T>> cola = new Queue<ArbolGeneral<T>>();
+    		cola.Encolar(this);
+
+    		while (cola.Count > 0)
+    		{
+        		int cantidadNodosNivelActual = cola.Count;
+
+        		for (int i = 0; i < cantidadNodosNivelActual; i++)
+        		{
+            			var nodoActual = cola.Desencolar();
+
+            			// Procesar el nodo actual como desees, por ejemplo, imprimir su dato
+            			Console.WriteLine(nodoActual.Dato);
+
+            			foreach (var hijo in nodoActual.Hijos)
+            			{
+                			cola.Encolar(hijo);
+            			}
+        		}
+    		}
+			
+	}
+
+ 	//metodo de agregar hijo
+	public void AgregarHijo()
+	{
+			
+	}
+		
+  	//metodo para obtener el hermano derecho de un nodo
+	public void getHermano()
+	{
+			
+	}
+		
+	//metodo para obtener los hijos de un nodo
+	public void getHijos()
+	{
+ 
+	}
+ 
 }
