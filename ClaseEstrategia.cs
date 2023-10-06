@@ -37,14 +37,9 @@ namespace TP_obligatorio
         		return "Planetas en los descendientes del nodo del Bot: " + string.Join(", ", planetasDescendientes);
 		}
 		
-		public string Consulta3()
-		{
-			//recorrer por niveles
-			//cada nivel tiene una lista de listas conformada por el nombre del planeta y su poblacion
-			//utilizando el metodo de encolar para agregar los datos y sumarlos
-			//se crea nueva lista por nivel
-			//imprimir la informacion calculando el porcentaje
-		}
+		public string Consulta3(ArbolGeneral<Planeta> arbol)
+		
+			
 		
 		private List<string> ObtenerDescendientes(arbol, Botplaneta) //devuelve una lista con los hijos de determinado planeta
 		{
