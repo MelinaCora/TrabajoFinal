@@ -1,60 +1,71 @@
 using System;
 using System.Collections.Generic;
+
 namespace TP_obligatorio
 {
 	
-	public class Estrategia
+	public class Estrategia<T>
 	{
 		//atributos
-		private Planeta botPlaneta;
-		
+		private Planeta BotPlaneta;
 		
 		//constructor
 		public Estrategia(Planeta botPlaneta)
 		{
-			BotPlaneta=botPlaneta;
+ 			BotPlaneta=botPlaneta;
 		}
 		
 		//metodos
-		public string CalcularMoviemiento (ArbolGeneral<Planeta> arbol, Planeta BotPlaneta)//cuerpo de la estrategia
+		public string CalcularMoviemiento (ArbolGeneral<Planeta> arbol, Planeta BotPlaneta, Planeta planetaJugador)//cuerpo de la estrategia
 		{
-			//calcular descendientes del planeta raiz del jugador
-			//a partir de esa lista calcular que planeta me conviene atacar
-			//realizar el moviemiento, ese planeta pasa a ser del bot y se suman las flotas
-			//necesito reaizar una operacion en caso de que el jugador elimine un planeta bot, entonces debe cambiar mi raiz a algun hijo
-					
+			// Calcular descendientes del planeta raíz del jugador
+    			List<Planeta> descendientes = ObtenerDescendientes(arbol, planetaJugador);
+
+    			// Encontrar el planeta con la menor población entre los descendientes
+   			Planeta planetaObjetivo = EncontrarPlanetaMenorPoblacion(descendientes);
+
+    			// Realizar el movimiento dismunir flotas enemigas, sumar flotas al bot)
+    			RealizarMovimiento(BotPlaneta, planetaObjetivo,arbol);
+    		
+    			string nombreConquista=planetaObjetivo.ObtenerNombre();
+    		    		
+    			string mensaje = string.Format("Se realizo correctamente la conquista del planeta: {0}", nombreConquista);
+    			return mensaje;
 		}
 		
-		public string Consulta1(ArbolGeneral<Planeta> arbol, Planeta botPlaneta, Planeta planeta)//en el progra deberia devolver mensaje adecuado
+		public string Consulta1(ArbolGeneral<Planeta> arbol, Planeta botPlaneta, Planeta planeta)
 		{
-    		List<string> camino = ObtenerCamino(arbol, botPlaneta, planeta);
-    		return camino;
+    			List<string> camino = ObtenerCamino(arbol, botPlaneta, planeta);
+    			if (camino == null)
+        		return "No se encontró un camino a ese planeta.";
+
+    			return "Camino al planeta: " + string.Join(" -> ", camino);
 		}
 		
-		public string Consulta2(ArbolGeneral<Planeta> arbol)
+		public string Consulta2(ArbolGeneral<Planeta> arbol, Planeta planetaIA)//usar ObtenerDescendientes
 		{
-			List<string> planetasDescendientes = ObtenerDescendientes(arbol, BotPlaneta);
+			List<Planeta> planetasDescendientes = ObtenerDescendientes(arbol, planetaIA);
         		return "Planetas en los descendientes del nodo del Bot: " + string.Join(", ", planetasDescendientes);
 		}
-		
-		public string Consulta3(ArbolGeneral<Planeta> arbol)
+		public void Consulta3(ArbolGeneral<Planeta> arbol)
 		{
-			Cola<ArbolGeneral<T>> cola = new Cola<ArbolGeneral<T>>();
-    			cola.Encolar(this);
-	    		cola.Encolar(null);
+			Cola<ArbolGeneral<Planeta>> cola = new Cola<ArbolGeneral<Planeta>>();
+    			cola.Encolar(arbol);
+    			cola.Encolar(null);
 
     			int nivel = 0;
     			Console.WriteLine("Nivel: {0}", nivel);
 
     			int poblacionTotal = 0; // Inicializar la población total
+    			int poblacionNivel =0;
 
-    			while (cola.Count > 0)
+    			while (cola.Contar() > 0)
     			{
         			var nodoActual = cola.Desencolar();
 
         			if (nodoActual == null)
         			{
-            				if (cola.Count > 0)
+        				if (cola.Contar() > 0)
             				{
                 				cola.Encolar(null);
                 				nivel++;
@@ -72,55 +83,76 @@ namespace TP_obligatorio
         			else
         			{
             				// Agregar la población de este nodo al total del nivel
-            				poblacionNivel += ObtenerPoblacion(nodoActual.Dato);
+            				poblacionNivel += nodoActual.Dato.ObtenerPoblacion();
 
             				if (nodoActual.Hijos != null)
             				{
                 				foreach (var hijo in nodoActual.Hijos)
                 				{
-                    					cola.Encolar(hijo);
+                    					ArbolGeneral<Planeta> arbolHijo = new ArbolGeneral<Planeta>(hijo, null);
+        						cola.Encolar(arbolHijo);
                 				}
             				}
         			}
     			}
 		}
 		
-			
 		
-		private List<string> ObtenerDescendientes(arbol, Botplaneta) //devuelve una lista con los hijos de determinado planeta
+		public List<Planeta> ObtenerDescendientes(ArbolGeneral<Planeta> arbol, Planeta planeta)
 		{
-			List<Planeta> planetasEnPreorden = new List<Planeta>();
-    			RecorridoPreorden(arbol, planetaBot, planetasEnPreorden);
-
-    			
-    			List<string> nombresPlanetasEnPreorden = planetasEnPreorden.Select(p => p.Nombre).ToList();
-
-    			// Convierte la lista de nombres en un string separado por comas con el join
-    			string listaPlanetasEnPreorden = string.Join(", ", nombresPlanetasEnPreorden);
-
-    			return listaPlanetasEnPreorden;
+    			List<Planeta> nombresDescendientes = new List<Planeta>();
+    			ObtenerDescendientes(arbol, planeta);
+    			return nombresDescendientes;
 		}
+		
 		
 		private List<string> ObtenerCamino(ArbolGeneral<Planeta> arbol, Planeta botPlaneta, Planeta planetaActual)
 		{
-    		if (planetaActual == null)
-        	return null;
+    			if (planetaActual == null)
+        		return null;
 
-    		if (planetaActual.Equals(botPlaneta))
-        	return new List<string> { planetaActual.nombre };  // Encontramos el planeta, retornamos una lista con su nombre
+    			if (planetaActual.Equals(botPlaneta))
+    			return new List<string> {planetaActual.ObtenerNombre()};  // Encontramos el planeta, retornamos una lista con su nombre
 
-    		foreach (var hijo in arbol.ObtenerHijos(planetaActual))
-    		{
-        		var resultadoHijo = ObtenerCamino(arbol, botPlaneta, hijo.Dato);
-        		if (resultadoHijo != null)
-        		{
-            			resultadoHijo.Insert(0, planetaActual.nombre);  // Agregamos el nombre del planeta actual al camino
-            			return resultadoHijo;
-        		}
+    			foreach (var hijo in arbol.getHijos(botPlaneta))
+    			{
+        			var resultadoHijo = ObtenerCamino(arbol, botPlaneta, hijo);
+        			if (resultadoHijo != null)
+        			{
+            				resultadoHijo.Insert(0, planetaActual.ObtenerNombre());  // Agregamos el nombre del planeta actual al camino
+            				return resultadoHijo;
+        			}
    			}
 
-    			return null;
+    		return null;
 		}
+		
+		private Planeta EncontrarPlanetaMenorPoblacion(List<Planeta> descendientes)
+		{
+    			int menosPoblacion = descendientes[0].ObtenerPoblacion();
+   	 		Planeta planetaMenorPoblacion = descendientes[0];
+
+    			foreach (var planetax in descendientes)
+    			{
+        			int poblacionPlaneta = planetax.ObtenerPoblacion();
+        			if (poblacionPlaneta < menosPoblacion)
+        			{
+            				menosPoblacion = poblacionPlaneta;
+            				planetaMenorPoblacion = planetax;
+        			}
+    			}
+    		return planetaMenorPoblacion;
+		}
+		
+		private void RealizarMovimiento(Planeta botPlaneta,Planeta planetaObjetivo,ArbolGeneral<Planeta> arbolJugador)
+		{
+			int FlotasBot=botPlaneta.ObtenerFlotas();
+			int FlotasObjetivo=planetaObjetivo.ObtenerFlotas();
+			botPlaneta.AgregarFlotas(FlotasObjetivo);
+			planetaObjetivo.DisminuirFlotas(FlotasObjetivo);
+			arbolJugador.EliminarHijo(planetaObjetivo);
+		}
+		
 		
 	}
 }
