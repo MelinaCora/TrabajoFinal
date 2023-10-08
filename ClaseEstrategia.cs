@@ -24,7 +24,7 @@ namespace TP_obligatorio
     			// Encontrar el planeta con la menor población entre los descendientes
    			Planeta planetaObjetivo = EncontrarPlanetaMenorPoblacion(descendientes);
 
-    			// Realizar el movimiento dismunir flotas enemigas, sumar flotas al bot)
+    			// Cambios de las flotas y eliminacion del planeta del jugador
     			RealizarMovimiento(BotPlaneta, planetaObjetivo,arbol);
     		
     			string nombreConquista=planetaObjetivo.ObtenerNombre();
@@ -49,7 +49,8 @@ namespace TP_obligatorio
 		}
 		public void Consulta3(ArbolGeneral<Planeta> arbol)
 		{
-			Cola<ArbolGeneral<Planeta>> cola = new Cola<ArbolGeneral<Planeta>>();
+			//recorrido por niveles con separador realizando los calculos necesarios por nivel
+   			Cola<ArbolGeneral<Planeta>> cola = new Cola<ArbolGeneral<Planeta>>();
     			cola.Encolar(arbol);
     			cola.Encolar(null);
 
