@@ -7,51 +7,47 @@ namespace TP_obligatorio
    	 {
         	// Atributos
         	private T Dato { get; set; }
-        	private List<ArbolGeneral<T>> Hijos { get; set; }
+        	private List<Planeta> Hijos { get; set; }
 
         	// Constructor
-        	public ArbolGeneral(T dato)
+        	public ArbolGeneral(T dato, List<Planeta> hijos)
         	{
-            	Dato = dato;
-            	Hijos = new List<ArbolGeneral<T>>();
+            		Dato = dato;
+    			Hijos = new List<Planeta>();
         	}
-    	public void RecorridoPreorden()
-	{
-    		RecorridoPreorden(this);
-    	}
-     	private void RecorridoPreorden(ArbolGeneral<T> nodo)
-	{
-    	    	if (nodo != null)
-    		{
-        	    Console.WriteLine(nodo.Dato);  // Visitar el nodo actual
-
-        	    foreach (var hijo in nodo.Hijos)
-        	    {
-            	    	RecorridoPreorden(hijo);  // Recorrer cada hijo en profundidad
-        	    }
-    	    	}
-        }
-	//metodo para recorrer por niveles y acceder a las poblaciones 
-	public void RecorridoPorNiveles()
-	{
-	}
-
- 	//metodo de agregar hijo
-	public void AgregarHijo()
-	{
-			
-	}
+	 
+     		private void RecorridoPreorden(ArbolGeneral<Planeta> arbol,Planeta nodo, List<Planeta> lista)
+		{
+    	    		if (nodo != null)
+    			{
+        			lista.Add(nodo);  // Agregar el nodo actual a la lista
+        			var planetasArecorrer=arbol.getHijos(nodo);
+        			foreach (var hijo in planetasArecorrer)
+        			{
+            				RecorridoPreorden(arbol,hijo, lista);  // Recorrer cada hijo en preorden
+        			}
+    			}
+        	}
+	 
 		
-  	//metodo para obtener el hermano derecho de un nodo
-	public void getHermano()
-	{
-			
-	}
+		public List<T> ObtenerRecorridoPreorden()
+		{
+    			List<T> recorrido = new List<T>();
+    			RecorridoPreorden();
+    			return recorrido;
+    		
+		}
+
+ 		//metodo de agregar hijo
+		public void AgregarHijo(Planeta planeta)
+		{
+			Hijos.Add(planeta);
+		}
 		
-	//metodo para obtener los hijos de un nodo
-	public void getHijos()
-	{
- 
-	}
+  		//metodo para obtener los hijos de un nodo
+		public List<Planeta> getHijos(Planeta planeta)
+		{
+			return Hijos;
+		}
  
 }
