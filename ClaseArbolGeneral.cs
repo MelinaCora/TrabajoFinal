@@ -28,16 +28,6 @@ namespace TP_obligatorio
         			}
     			}
         	}
-	 
-		
-		public List<T> ObtenerRecorridoPreorden()
-		{
-    			List<T> recorrido = new List<T>();
-    			RecorridoPreorden();
-    			return recorrido;
-    		
-		}
-
  		//metodo de agregar hijo
 		public void AgregarHijo(Planeta planeta)
 		{
@@ -49,5 +39,9 @@ namespace TP_obligatorio
 		{
 			return Hijos;
 		}
- 
+
+   		public void EliminarHijo(Planeta planeta)
+     		{
+       			Hijos.Remove(planeta);
+		}
 }
