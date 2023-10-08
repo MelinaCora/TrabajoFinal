@@ -89,5 +89,10 @@ namespace TP_obligatorio
     		{
         		return Poblacion;
     		}
+
+		public int ObtenerFlotas()
+    		{
+    			return Flotas;
+    		}
 	}
 }
