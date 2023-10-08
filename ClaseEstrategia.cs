@@ -38,6 +38,52 @@ namespace TP_obligatorio
 		}
 		
 		public string Consulta3(ArbolGeneral<Planeta> arbol)
+		{
+			Cola<ArbolGeneral<T>> cola = new Cola<ArbolGeneral<T>>();
+    			cola.Encolar(this);
+	    		cola.Encolar(null);
+
+    			int nivel = 0;
+    			Console.WriteLine("Nivel: {0}", nivel);
+
+    			int poblacionTotal = 0; // Inicializar la población total
+
+    			while (cola.Count > 0)
+    			{
+        			var nodoActual = cola.Desencolar();
+
+        			if (nodoActual == null)
+        			{
+            				if (cola.Count > 0)
+            				{
+                				cola.Encolar(null);
+                				nivel++;
+                				Console.WriteLine("\nNivel: {0}", nivel);
+
+                				// Calcular población total y porcentaje
+                				float porcentaje = poblacionTotal > 0 ? ((float)poblacionNivel / poblacionTotal) * 100 : 0;
+                				Console.WriteLine("Población total en este nivel: {0}", poblacionNivel);
+                				Console.WriteLine("Porcentaje respecto a la población total: {0:0.00}%", porcentaje);
+
+                				// Reiniciar la población para el próximo nivel
+                				poblacionNivel = 0;
+            				}
+       	 			}
+        			else
+        			{
+            				// Agregar la población de este nodo al total del nivel
+            				poblacionNivel += ObtenerPoblacion(nodoActual.Dato);
+
+            				if (nodoActual.Hijos != null)
+            				{
+                				foreach (var hijo in nodoActual.Hijos)
+                				{
+                    					cola.Encolar(hijo);
+                				}
+            				}
+        			}
+    			}
+		}
 		
 			
 		
