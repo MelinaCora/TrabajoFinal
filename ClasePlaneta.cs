@@ -29,10 +29,8 @@ namespace TP_obligatorio
 		
 		//metodo para hallar el planeta mas cercano
 		private Planeta PlanetaMasCercano(ArbolGeneral <Planeta> arbol,Planeta o,Planeta d)
-      
-			//Recorrer el arbol  desde un nodo hasta otro comparano si el planeta d tiene menos flotas que el o 
-	   	{
-        	
+      		//Recorrer el arbol  desde un nodo hasta otro comparano si el planeta d tiene menos flotas que el o 
+	   	{        	
 			Planeta planetaMasCercano = o;
 			Planeta planetaConveniente= null;
 			
@@ -40,12 +38,9 @@ namespace TP_obligatorio
 			{
         			foreach (var hijo in Hijos)
         			{
-            	            	
-        			
-            			Planeta planetaHijoMasCercano = PlanetaMasCercano(arbol,hijo,d);
-
-            			// Comparar el número de flotas del planeta más cercano actual con el del hijo
-            			if (planetaHijoMasCercano != null && planetaHijoMasCercano.Flotas < planetaMasCercano.Flotas)
+            	            		Planeta planetaHijoMasCercano = PlanetaMasCercano(arbol,hijo,d);
+					// Comparar el número de flotas del planeta más cercano actual con el del hijo
+            				if (planetaHijoMasCercano != null && planetaHijoMasCercano.Flotas < planetaMasCercano.Flotas)
             				{
                 				planetaConveniente = planetaHijoMasCercano;
             				}
@@ -84,5 +79,15 @@ namespace TP_obligatorio
 		{
 			Flotas-=FlotasParaDisminuir;
 		}
+		public string ObtenerNombre()
+    		{
+        		return Nombre;
+    		}
+
+    		// Método público para obtener la propiedad del planeta
+    		public int ObtenerPoblacion()
+    		{
+        		return Poblacion;
+    		}
 	}
 }
