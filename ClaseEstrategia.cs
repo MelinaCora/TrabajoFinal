@@ -128,21 +128,21 @@ namespace TP_obligatorio
     		return null;
 		}
 		
-		private Planeta EncontrarPlanetaMenorPoblacion(List<Planeta> descendientes)
+		private Planeta EncontrarPlanetaMenorFlotas(List<Planeta> descendientes)
 		{
-    			int menosPoblacion = descendientes[0].ObtenerPoblacion();
-   	 		Planeta planetaMenorPoblacion = descendientes[0];
+    			int menosFlotas = descendientes[0].ObtenerFlotas();
+   	 		Planeta planetaMenorFlotas = descendientes[0];
 
     			foreach (var planetax in descendientes)
     			{
-        			int poblacionPlaneta = planetax.ObtenerPoblacion();
-        			if (poblacionPlaneta < menosPoblacion)
+        			int flotasPlaneta = planetax.ObtenerFlotas();
+        			if (flotasPlaneta < menosFlotas)
         			{
-            				menosPoblacion = poblacionPlaneta;
-            				planetaMenorPoblacion = planetax;
+            				menosFlotas = flotasPlaneta;
+            				planetaMenorFlotas = planetax;
         			}
     			}
-    		return planetaMenorPoblacion;
+    			return planetaMenorFlotas;
 		}
 		
 		private void RealizarMovimiento(Planeta botPlaneta,Planeta planetaObjetivo,ArbolGeneral<Planeta> arbolJugador)
