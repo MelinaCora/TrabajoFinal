@@ -13,13 +13,14 @@ namespace TP_obligatorio
             		Planeta planetaIA3 = new Planeta("Azul", "IA3", 1325, 300, 12);
            		Planeta planetaIA4 = new Planeta("Azul", "IA4", 1100, 500, 18);
             		Planeta planetaIA5 = new Planeta("Azul", "IA5", 990, 700, 22);
-
-           		// Crear el árbol para la IA
+			Planeta planetaIA6 = new Planeta("Azul", "IA6", 990, 700, 22);
+           		
+			// Crear el árbol para la IA
             		ArbolGeneral<Planeta> arbolIA = new ArbolGeneral<Planeta>(planetaIA1, new List<Planeta> { planetaIA2 });
             		arbolIA.AgregarHijo(planetaIA3);
-            		arbolIA.AgregarHijo(null)
-            		arbolIA.AgregarHijo(planetaIA4);
-            		arbolIA.AgregarHijo(planetaIA5);
+            		arbolIA.AgregarHijoAunDeterminadoNodo(planetaIA2,planetaIA4);
+            		arbolIA.AgregarHijoAunDeterminadoNodo(planetaIA2,planetaIA5);
+            		arbolIA.AgregarHijoAunDeterminadoNodo(planetaIA2,planetaIA6);
 				
 				
             		// Crear planetas para el jugador
@@ -32,10 +33,10 @@ namespace TP_obligatorio
             		// Crear el árbol para el jugador
            		ArbolGeneral<Planeta> arbolJugador = new ArbolGeneral<Planeta>(planetaJugador1, new List<Planeta> { planetaJugador2 });
             		arbolJugador.AgregarHijo(planetaJugador3);
-            		arbolJugador.AgregarHijo(null);
-            		arbolJugador.AgregarHijo(planetaJugador4);
-            		arbolJugador.AgregarHijo(planetaJugador5);
+                        arbolJugador.AgregarHijoAunDeterminadoNodo(planetaJugador3,planetaJugador4);
+            		arbolJugador.AgregarHijoAunDeterminadoNodo(planetaJugador3,planetaJugador5);
             
+           	 	
             		Console.Write (arbolJugador.RecorridoPreorden());
             		Console.Write (arbolIA.RecorridoPreorden());
             
