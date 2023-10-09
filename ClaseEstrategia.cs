@@ -144,16 +144,6 @@ namespace TP_obligatorio
     			}
     			return planetaMenorFlotas;
 		}
-		
-		private void RealizarMovimiento(Planeta botPlaneta,Planeta planetaObjetivo,ArbolGeneral<Planeta> arbolJugador)
-		{
-			int FlotasBot=botPlaneta.ObtenerFlotas();
-			int FlotasObjetivo=planetaObjetivo.ObtenerFlotas();
-			botPlaneta.AgregarFlotas(FlotasObjetivo);
-			planetaObjetivo.DisminuirFlotas(FlotasObjetivo);
-			arbolJugador.EliminarHijo(planetaObjetivo);
-		}
-		
-		
+				
 	}
 }
