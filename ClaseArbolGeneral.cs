@@ -16,7 +16,7 @@ namespace TP_obligatorio
     			Hijos = new List<Planeta>();
         	}
 	 
-     		private void RecorridoPreorden(ArbolGeneral<Planeta> arbol,Planeta nodo, List<Planeta> lista)
+     		private void RecorridoPreorden()
 		{
     	    		if (nodo != null)
     			{
@@ -24,7 +24,7 @@ namespace TP_obligatorio
         			var planetasArecorrer=arbol.getHijos(nodo);
         			foreach (var hijo in planetasArecorrer)
         			{
-            				RecorridoPreorden(arbol,hijo, lista);  // Recorrer cada hijo en preorden
+            				RecorridoPreorden();  // Recorrer cada hijo en preorden
         			}
     			}
         	}
