@@ -18,5 +18,14 @@ namespace TP_obligatorio
 			Planeta destino= planetaDestino;
 			
 		}
+
+		public void RealizarMovimiento(Planeta botPlaneta,Planeta planetaObjetivo,ArbolGeneral<Planeta> arbolJugador)
+		{
+			int FlotasBot=botPlaneta.ObtenerFlotas();
+			int FlotasObjetivo=planetaObjetivo.ObtenerFlotas();
+			botPlaneta.AgregarFlotas(FlotasObjetivo);
+			planetaObjetivo.DisminuirFlotas(FlotasObjetivo);
+			arbolJugador.EliminarHijo(planetaObjetivo);
+		}
 		
 		
