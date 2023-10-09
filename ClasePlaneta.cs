@@ -29,7 +29,7 @@ namespace TP_obligatorio
 		
 		//metodo para hallar el planeta mas cercano
 		private Planeta PlanetaMasCercano(ArbolGeneral <Planeta> arbol,Planeta o,Planeta d)
-      		//Recorrer el arbol  desde un nodo hasta otro comparano si el planeta d tiene menos flotas que el o 
+      		//Recorrer el arbol  desde un nodo hasta otro comparano si el planeta d tiene mas flotas que el o 
 	   	{        	
 			Planeta planetaMasCercano = o;
 			Planeta planetaConveniente= null;
@@ -40,7 +40,7 @@ namespace TP_obligatorio
         			{
             	            		Planeta planetaHijoMasCercano = PlanetaMasCercano(arbol,hijo,d);
 					// Comparar el número de flotas del planeta más cercano actual con el del hijo
-            				if (planetaHijoMasCercano != null && planetaHijoMasCercano.Flotas < planetaMasCercano.Flotas)
+            				if (planetaHijoMasCercano != null && planetaHijoMasCercano.Flotas >= planetaMasCercano.Flotas)
             				{
                 				planetaConveniente = planetaHijoMasCercano;
             				}
