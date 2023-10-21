@@ -8,14 +8,11 @@ namespace TP_obligatorio
 	{
 		//atributos
 		private Planeta BotPlaneta;
-		private int turnos;
-  
 		//constructor
-		public Estrategia(Planeta botPlaneta, int turnos)
+		public Estrategia(Planeta botPlaneta)
 		{
  			BotPlaneta=botPlaneta;
-    			this.turnos=turnos;
-		}
+    		}
 		
 		//metodos
   		public string CalcularMoviemiento (ArbolGeneral<Planeta> arbol, Planeta BotPlaneta, Planeta planetaJugador)//cuerpo de la estrategia
@@ -31,21 +28,13 @@ namespace TP_obligatorio
     		
     			string nombreConquista=planetaObjetivo.ObtenerNombre();
        
-       			//disminuir turnos
-       			turnos--;
-	  		if (turnos=0)
-     			{
-				console.Writeline("no tienes mas turnos");
-    				VerificarVictoria(arbol)
-			}
-    		    		
     			string mensaje = string.Format("Se realizo correctamente la conquista del planeta: {0}", nombreConquista);
     			return mensaje;
 		}
 		
 		public string Consulta1(ArbolGeneral<Planeta> arbol, Planeta botPlaneta, Planeta planeta)
 		{
-    			List<string> camino = ObtenerCamino(arbol, botPlaneta, planeta);
+    			List<Planeta> camino = ObtenerCamino(arbol, botPlaneta);
     			if (camino == null)
         		return "No se encontró un camino a ese planeta.";
 
@@ -117,27 +106,23 @@ namespace TP_obligatorio
 		}
 		
 		
-		private List<string> ObtenerCamino(ArbolGeneral<Planeta> arbol, Planeta botPlaneta, Planeta planetaActual)
+		//obtener camino del bot hacia la raiz
+		public List<Planeta> ObtenerCamino(ArbolGeneral<Planeta> arbol, Planeta botPlaneta)
 		{
-    			if (planetaActual == null)
-        		return null;
-
-    			if (planetaActual.Equals(botPlaneta))
-    			return new List<string> {planetaActual.ObtenerNombre()};  // Encontramos el planeta, retornamos una lista con su nombre
-
-    			foreach (var hijo in arbol.getHijos(botPlaneta))
+    			List<Planeta> camino = new List<Planeta>();
+    			Planeta nodoActual = botPlaneta;
+    			while (nodoActual != null)
     			{
-        			var resultadoHijo = ObtenerCamino(arbol, botPlaneta, hijo);
-        			if (resultadoHijo != null)
-        			{
-            				resultadoHijo.Insert(0, planetaActual.ObtenerNombre());  // Agregamos el nombre del planeta actual al camino
-            				return resultadoHijo;
-        			}
-   			}
+        			camino.Add(nodoActual);
+        			if (nodoActual.Equals(arbol.Dato))
+            				break; // se corta una vez encontrada la raiz
+        			nodoActual = nodoActual.Raiz;
+    			}
 
-    		return null;
+    			camino.Reverse(); // Invertimos 
+    			return camino;
 		}
-		
+  
 		private Planeta EncontrarPlanetaMenorFlotas(List<Planeta> descendientes)
 		{
     			int menosFlotas = descendientes[0].ObtenerFlotas();
