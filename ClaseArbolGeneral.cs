@@ -16,15 +16,15 @@ namespace TP_obligatorio
     			Hijos = new List<Planeta>();
         	}
 	 
-     		private void RecorridoPreorden()
+     		private void RecorridoPreorden(ArbolGeneral<Planeta> arbol)
 		{
-    	    		if (nodo != null)
+    	    		if (Dato != null)
     			{
-        			lista.Add(nodo);  // Agregar el nodo actual a la lista
-        			var planetasArecorrer=arbol.getHijos(nodo);
+        			Console.WriteLine(Dato);
+        			var planetasArecorrer=arbol.getHijos(Dato);
         			foreach (var hijo in planetasArecorrer)
         			{
-            				RecorridoPreorden();  // Recorrer cada hijo en preorden
+            				hijo.RecorridoPreorden(Arbol);  // Recorrer cada hijo en preorden
         			}
     			}
         	}
