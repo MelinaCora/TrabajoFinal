@@ -35,7 +35,8 @@ namespace TP_obligatorio
        			turnos--;
 	  		if (turnos=0)
      			{
-				console.Writeline("no tienes mas turnos");	
+				console.Writeline("no tienes mas turnos");
+    				VerificarVictoria(arbol)
 			}
     		    		
     			string mensaje = string.Format("Se realizo correctamente la conquista del planeta: {0}", nombreConquista);
