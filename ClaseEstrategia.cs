@@ -8,15 +8,17 @@ namespace TP_obligatorio
 	{
 		//atributos
 		private Planeta BotPlaneta;
-		
+		private int turnos;
+  
 		//constructor
-		public Estrategia(Planeta botPlaneta)
+		public Estrategia(Planeta botPlaneta, int turnos)
 		{
  			BotPlaneta=botPlaneta;
+    			this.turnos=turnos;
 		}
 		
 		//metodos
-		public string CalcularMoviemiento (ArbolGeneral<Planeta> arbol, Planeta BotPlaneta, Planeta planetaJugador)//cuerpo de la estrategia
+  		public string CalcularMoviemiento (ArbolGeneral<Planeta> arbol, Planeta BotPlaneta, Planeta planetaJugador)//cuerpo de la estrategia
 		{
 			// Calcular descendientes del planeta raíz del jugador
     			List<Planeta> descendientes = ObtenerDescendientes(arbol, planetaJugador);
@@ -28,6 +30,13 @@ namespace TP_obligatorio
     			RealizarMovimiento(BotPlaneta, planetaObjetivo,arbol);
     		
     			string nombreConquista=planetaObjetivo.ObtenerNombre();
+       
+       			//disminuir turnos
+       			turnos--;
+	  		if (turnos=0)
+     			{
+				console.Writeline("no tienes mas turnos");	
+			}
     		    		
     			string mensaje = string.Format("Se realizo correctamente la conquista del planeta: {0}", nombreConquista);
     			return mensaje;
@@ -143,6 +152,60 @@ namespace TP_obligatorio
         			}
     			}
     			return planetaMenorFlotas;
+		}
+  		//metodo para verificar quien tiene la victoria
+  		public void VerificarVictoria(ArbolGeneral<Planeta> arbol)
+    		{
+      			int planetasIA=0);
+	 		int planetasJugador=0;
+    			//se crea una cola con todos los planetas
+    			Cola<ArbolGeneral<Planeta>> cola = new Cola<ArbolGeneral<Planeta>>();
+    			cola.Encolar(arbol);
+    			cola.Encolar(null);
+       			//mientras haya elementos en la cola
+      			while (cola.Contar() > 0)
+    			{
+        			Recorrido por niveles del arbol
+	   			var nodoActual = cola.Desencolar();
+	       			if (nodoActual == null) // si el nodo es null entonces es nivel
+        			{
+            				if (cola.Contar() > 0)
+            				{
+                				cola.Encolar(null);
+            				}
+        			}
+        			else // si no es null entonces pregunto si es de la ia o del jugador
+        			{
+            				if (nodoActual.Dato.EsPlanetadelaIA())
+            				{
+                				planetasIA++; //agrego al contador
+            				}
+            				else if (nodoActual.Dato.EsPlanetadelJugador())
+            				{
+                				planetasJugador++; //Agrego al contador
+            				}
+
+            				if (nodoActual.Hijos != null) //verifico si ese nodo tiene hijos
+            				{
+                				foreach (var hijo in nodoActual.Hijos) // si tiene los recorro
+               		 			{
+                    					cola.Encolar(new ArbolGeneral<Planeta>(hijo, null)); //los agrego a la cola para ser vicitados en el siguiente nivel.
+                				}
+            				}
+        			}
+	   			if (planetasIA > planetasJugador) // comparo ambos contadores
+    				{
+        				Console.WriteLine("La IA ha ganado.");
+    				}
+    				else if (planetasJugador > planetasIA)
+    				{
+        				Console.WriteLine("El jugador ha ganado.");
+    				}
+   	 			else
+    				{
+        				Console.WriteLine("El juego ha terminado en empate.");
+    				}
+   	 		}
 		}
 				
 	}
