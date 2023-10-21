@@ -12,7 +12,7 @@ namespace TP_obligatorio
 		private Plaeta planetaDestino {get;set;}
 		
 		//constructor
-		public Movimiento(Planeta origen;Planeta destino;ArbolGeneral <Planeta> arbol;);
+		public Movimiento(Planeta origen, Planeta destino, ArbolGeneral<Planeta> arbol)
 		{
 			Planeta origen=planetaOrigen;
 			Planeta destino= planetaDestino;
