@@ -19,7 +19,7 @@ namespace TP_obligatorio
 			
 		}
 
-		public void RealizarMovimiento(Planeta botPlaneta,Planeta planetaObjetivo,ArbolGeneral<Planeta> arbolJugador)
+		public void RealizarMovimiento(Planeta botPlaneta,Planeta planetaObjetivo,ArbolGeneral<Planeta> arbol)
 		{
 			int FlotasBot=botPlaneta.ObtenerFlotas();
 			int FlotasObjetivo=planetaObjetivo.ObtenerFlotas();
