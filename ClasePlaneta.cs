@@ -13,6 +13,7 @@ namespace TP_obligatorio
 		private int Flotas{get;set;}
 		private int TasaCrecimiento{get;set;}
 		private List<Planeta> Hijos { get; set; }
+		public Planeta Raiz { get; set; } // Atributo para almacenar la raíz
 		
 		//constructor
 		public Planeta(string propiedad,string nombre,int poblacion,int flotas,int tasaCrecimiento)
