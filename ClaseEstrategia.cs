@@ -23,8 +23,8 @@ namespace TP_obligatorio
 			// Calcular descendientes del planeta raíz del jugador
     			List<Planeta> descendientes = ObtenerDescendientes(arbol, planetaJugador);
 
-    			// Encontrar el planeta con la menor población entre los descendientes
-   			Planeta planetaObjetivo = EncontrarPlanetaMenorPoblacion(descendientes);
+    			// Encontrar el planeta con la menor cantidad de naves entre los descendientes
+   			Planeta planetaObjetivo = EncontrarPlanetaMenorFlotas(descendientes);
 
     			// Cambios de las flotas y eliminacion del planeta del jugador
     			RealizarMovimiento(BotPlaneta, planetaObjetivo,arbol);
