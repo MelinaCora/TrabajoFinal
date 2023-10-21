@@ -36,11 +36,14 @@ namespace TP_obligatorio
 
   		public void AgregarHijoAunDeterminadoNodo(Planeta padre, Planeta planetaAgregar)
 		{
-			var nodoPadre = Hijos.FirstOrDefault(nodo => nodo == padre);
-			if (nodoPadre != null)
-    		{
-       	 		nodoPadre.Hijos.Add(hijo);
-			}
+    			foreach (var nodo in Hijos)
+    			{
+        			if (nodo == padre)
+        			{
+            				nodo.Hijos.Add(planetaAgregar);
+            				break;  // Una vez que se encuentra el nodo padre, no es necesario seguir buscando
+        			}
+    			}
 		}
 		
   		//metodo para obtener los hijos de un nodo
