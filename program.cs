@@ -7,9 +7,6 @@ namespace TP_obligatorio
 	{
 		public static void Main(string[] args)
 		{
-			int turnos;
-			turnos= 100;
-			
 			// Crear planetas para la IA
             		Planeta planetaIA1 = new Planeta("Azul", "IA1", 1000, 300, 10);
             		Planeta planetaIA2 = new Planeta("Azul", "IA2", 1500, 220, 15);
