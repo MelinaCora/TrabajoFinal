@@ -31,15 +31,16 @@ namespace TP_obligatorio
             		Planeta planetaNeutral4 = new Planeta("Blanco", "Neutral4", 1100, 500, 18);
             		Planeta planetaNeutral5 = new Planeta("Blanco", "Neutral5", 990, 700, 22);
             		Planeta planetaNeutral6 = new Planeta("Blanco", "Neutral6", 990, 700, 22);
-            
             		//armo el arbol general
-            
-            
-            		//ciclo de juego
-           		 while (turnos>0)
-            		{
-            	
-            		}
+                        //ciclo de juego
+			//Movimiento Juego1 = new Movimiento(planeta origen , planeta destino, arbol);
+			//juego1.RealizarMoviemiento(planetaIA, planetaDestino, arbol);
+			//VerificarVictoria(arbol);
+			//consulta1
+            		//consulta2
+            		//consulta3
+            		//CalcularMovimiento
+           		 
             		private void VerificarVictoria(ArbolGeneral<Planeta> arbol)
 	    		{
       				int planetasIA=0;
