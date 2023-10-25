@@ -10,6 +10,7 @@ namespace TP_obligatorio
 		//atributos
 		private Planeta planetaOrigen {get; set;}
 		private Plaeta planetaDestino {get;set;}
+		private int turno {get;set;}
 		
 		//constructor
 		public Movimiento(Planeta origen, Planeta destino, ArbolGeneral<Planeta> arbol)
@@ -21,10 +22,11 @@ namespace TP_obligatorio
 
 		public void RealizarMovimiento(Planeta botPlaneta,Planeta planetaObjetivo,ArbolGeneral<Planeta> arbol)
 		{
-			int turno=100;
+			int turnox= turno.ObtenerTurno();
 			//obtener camino desde el planetaIA hasta el destino y realizar el movimiento solo si existe un camino directo
 			Planeta planetaObjetivo=planetaDestino.ObtenerPlanetaD()
 			List<Planeta> caminox = ObtenerCamino(arbol, planetaObjetivo);
+			while (turnox>0){
 			if (caminox != null)
 			{
 				//recorro cada nodo del camino obtenido y evaluo si es del jugador. en casos contrarios solo avanzo y disminuyo el turno			
@@ -41,6 +43,7 @@ namespace TP_obligatorio
 				}
 			
 			}
+		}
 		}
 		
 		public Planeta ObtenerPlanetaD()
