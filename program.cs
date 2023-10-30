@@ -62,14 +62,12 @@ namespace TP_obligatorio
             		Arbol1.AgregarHijoAunDeterminadoNodo(planetaJugador4,planetaIA4);
             
             		//ciclo de juego
-            		Estrategia estrategia1 = new Estrategia(planetaIA1);
-            		estrategia1.CalcularMoviemiento();
+            		List <Planeta> CaminoConveniente=estrategia1.CalcularMoviemiento(Arbol1,planetaIA1,planetaIA4);
             		estrategia1.Consulta1(Arbol1,planetaIA1,Arbol1.Dato);
-            		estrategia1.Consulta2(Arbol1,planetaIA1);
+           	 	estrategia1.Consulta2(Arbol1,planetaIA1);
             		estrategia1.Consulta3(Arbol1);
-			
-            		Movimiento Juego1 = new Movimiento(planeta planetaIA1 , planeta planetaIA4, Arbol1,FlotaIA);
-            		Juego1.RealizarMoviemiento(planetaIA, planetaDestino, arbol,4);
+               		Movimiento Juego1 = new Movimiento(planetaIA1,planetaIA4,Arbol1,FlotaIA);
+            		Juego1.RealizarMovimiento(CaminoConveniente,planetaIA1);
 
 			estrategia1.VerificarVictoria(Arbol1);
 		}
