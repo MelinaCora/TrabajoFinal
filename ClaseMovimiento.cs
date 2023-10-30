@@ -31,15 +31,23 @@ namespace TP_obligatorio
         			Planeta siguientePlaneta = camino[1];
 				if (siguientePlaneta.EsPlanetadelJugador())
 				{
-					// Realizar interacción con el planeta objetivo 
-					planetaActual.AgregarNaves(siguientePlaneta.naves());
-					siguientePlaneta.DisminuirNaves(siguientePlaneta.naves());
-					siguientePlaneta.CambiarPropiedad("Azul");
+					if (siguientePlaneta.ObtenerFlota()<planetaActual.ObtenerFlota())){
+						// Realizar interacción con el planeta objetivo
+						planetaActual.AgregarNaves(siguientePlaneta.naves());
+						siguientePlaneta.DisminuirNaves(siguientePlaneta.naves());
+						siguientePlaneta.CambiarPropiedad("Azul");
+					}
+					if(siguientePlaneta.ObtenerFlota()>planetaActual.ObtenerFlota()){
+						siguientePlaneta.AgregarNaves(planetaActual.naves());
+						planetaActual.DisminuirNaves(siguientePlaneta.naves());
+						planetaActual.CambiarPropiedad("Rojo");
+					}
 			
 				}
 				if (siguientePlaneta.EsPlanetadelaIA()){
 					planetaActual.AgregarNaves(siguientePlaneta.naves());
 				}
+				
 				// Mover la flota de naves al siguiente planeta
 				planetaActual.ObtenerFlota() = null;
 				siguientePlaneta.ObtenerFlota() = Flota;
