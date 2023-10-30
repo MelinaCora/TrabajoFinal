@@ -98,7 +98,7 @@ namespace TP_obligatorio
 		}
 		
 		
-		public List<Planeta> ObtenerDescendientes(ArbolGeneral<Planeta> arbol, Planeta planeta)
+		private List<Planeta> ObtenerDescendientes(ArbolGeneral<Planeta> arbol, Planeta planeta)
 		{
     			List<Planeta> nombresDescendientes = new List<Planeta>();
     			ObtenerDescendientes(arbol, planeta);
@@ -107,7 +107,7 @@ namespace TP_obligatorio
 		
 		
 		//obtener camino del bot hacia la raiz
-		public List<Planeta> ObtenerCamino(ArbolGeneral<Planeta> arbol, Planeta botPlaneta)
+		private List<Planeta> ObtenerCamino(ArbolGeneral<Planeta> arbol, Planeta botPlaneta)
 		{
     			List<Planeta> camino = new List<Planeta>();
     			Planeta nodoActual = botPlaneta;
