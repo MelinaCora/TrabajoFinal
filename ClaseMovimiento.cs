@@ -22,27 +22,13 @@ namespace TP_obligatorio
 			
 		}
 
-		public void RealizarMovimiento(Planeta botPlaneta,Planeta planetaObjetivo,ArbolGeneral<Planeta> arbol)
+		public void RealizarMovimiento(List <Planeta> camino,Planeta planetaActual)
 		{
 			int turnox=ObtenerTurno();
-			Planeta planetaActual = botPlaneta;
-			
-			//primero realizo la busqueda del camino desde la IA hasta la raiz			
-			List<Planeta> caminox =ObtenerCamino(arbol, botPlaneta);			
-			// otra lista para el camino del destino hasta la raiz			
-			List<Planeta> caminoy = ObtenerCamino(arbol, planetaObjetivo);
-			//combinamos las listas para generar un solo camino			
-			List<Planeta> caminoz = new List<Planeta>(caminox);
-			caminoz.AddRange(caminoy);			
-			//obtengo las posiciones de ambos en el camino			
-			int indiceBot = caminoz.IndexOf(botPlaneta);
-			int indiceObjetivo = caminoz.IndexOf(planetaObjetivo);
-			//defino el nuevo camino desde el bot hasta 
-			List<Planeta> caminoFinal = caminoz.GetRange(indiceBot, indiceObjetivo - indiceBot + 1);
 						
-			while (turnox > 0 && caminoFinal != null && caminoFinal.Count > 1){
+			while (turnox > 0 && camino != null && camino.Count > 1){
 				// Avanzar al siguiente planeta en el camino
-        			Planeta siguientePlaneta = caminoFinal[1];
+        			Planeta siguientePlaneta = camino[1];
 				if (siguientePlaneta.EsPlanetadelJugador())
 				{
 					// Realizar interacción con el planeta objetivo 
@@ -61,7 +47,7 @@ namespace TP_obligatorio
 
         			// Reducir el turno y actualizar el camino
         			turnox--;
-        			caminoFinal.RemoveAt(0);
+        			camino.RemoveAt(0);
 			}
 		}			
 		public Planeta ObtenerPlanetaD()
