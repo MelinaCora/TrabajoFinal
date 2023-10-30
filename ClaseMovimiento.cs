@@ -44,6 +44,12 @@ namespace TP_obligatorio
            			 	arbol.EliminarHijo(siguientePlaneta);
 			
 				}
+				if (siguientePlaneta.EsPlanetadelaIA()){
+					int flotasBot = botPlaneta.ObtenerFlotas();
+            				int flotasObjetivo = siguientePlaneta.ObtenerFlotas();
+            				botPlaneta.AgregarFlotas(flotasObjetivo);
+            				siguientePlaneta.DisminuirFlotas(flotasObjetivo);
+				}
 				// Mover la flota de naves al siguiente planeta
         			planetaActual.Flota = null;
         			siguientePlaneta.Flota = botPlaneta.Flota;
