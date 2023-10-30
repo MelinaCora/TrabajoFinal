@@ -10,48 +10,22 @@ namespace TP_obligatorio
 		private string Propiedad{get;set;}
 		private string Nombre{get;set;}
 		private int Poblacion {get;set;}
-		private int Flotas{get;set;}
+		private Flota Flota{get;set;}
 		private int TasaCrecimiento{get;set;}
 		private List<Planeta> Hijos { get; set; }
 		
 		//constructor
-		public Planeta(string propiedad,string nombre,int poblacion,int flotas,int tasaCrecimiento)
+		public Planeta(string propiedad,string nombre,int poblacion,int tasaCrecimiento, Flota flota)
 		{
 			this.Propiedad=propiedad;
 			this.Nombre=nombre;
 			this.Poblacion=poblacion;
-			this.Flotas=flotas;
+			Flota=flota;
 			this.TasaCrecimiento=tasaCrecimiento;
 			Hijos = new List<Planeta>();
 			
 		}
-		
-		
-		//metodo para hallar el planeta mas cercano
-		private Planeta PlanetaMasCercano(ArbolGeneral <Planeta> arbol,Planeta o,Planeta d)
-      		//Recorrer el arbol  desde un nodo hasta otro comparano si el planeta d tiene mas flotas que el o 
-	   	{        	
-			Planeta planetaMasCercano = o;
-			Planeta planetaConveniente= null;
-			
-			if (Hijos != null) //la lista de hijos debe ser distinta de nula
-			{
-        			foreach (var hijo in Hijos)
-        			{
-            	            		Planeta planetaHijoMasCercano = PlanetaMasCercano(arbol,hijo,d);
-					// Comparar el número de flotas del planeta más cercano actual con el del hijo
-            				if (planetaHijoMasCercano != null && planetaHijoMasCercano.Flotas >= planetaMasCercano.Flotas)
-            				{
-                				planetaConveniente = planetaHijoMasCercano;
-            				}
-            	
-        			}
-			
-			}
-			
-			return planetaConveniente;
-		}
-			
+				
 		//metodos para verificar la propiedad del planeta
 		public bool EsPlanetadelaIA()
 		{
@@ -77,6 +51,13 @@ namespace TP_obligatorio
     		public int ObtenerPoblacion()
     		{
         		return Poblacion;
+    		}
+		public string ObtenerPropiedad(){
+    			return Propiedad;
+    		}
+    		public int naves(){
+    			int totalnaves=Flota.ObtenerCantidadNaves();
+    			return totalnaves;
     		}
 	}
 }
