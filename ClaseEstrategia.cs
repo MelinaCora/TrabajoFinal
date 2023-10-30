@@ -9,27 +9,33 @@ namespace TP_obligatorio
 		//atributos
 		private Planeta BotPlaneta;
 		//constructor
-		public Estrategia(Planeta botPlaneta)
+		public Estrategia()
 		{
- 			BotPlaneta=botPlaneta;
     		}
 		
 		//metodos
   		public string CalcularMoviemiento (ArbolGeneral<Planeta> arbol, Planeta BotPlaneta, Planeta planetaJugador)//cuerpo de la estrategia
 		{
-			// Calcular descendientes del planeta raíz del jugador
-    			List<Planeta> descendientes = ObtenerDescendientes(arbol, planetaJugador);
+			// Encuentra el camino más corto desde BotPlaneta hasta planetaObjetivo
+    			List<Planeta> caminoMasCorto = ObtenerCamino(arbol,planetaObjetivo);
 
-    			// Encontrar el planeta con la menor cantidad de naves entre los descendientes
-   			Planeta planetaObjetivo = EncontrarPlanetaMenorFlotas(descendientes);
-
-    			// Cambios de las flotas y eliminacion del planeta del jugador
-    			RealizarMovimiento(BotPlaneta, planetaObjetivo,arbol);
-    		
-    			string nombreConquista=planetaObjetivo.ObtenerNombre();
-       
-    			string mensaje = string.Format("Se realizo correctamente la conquista del planeta: {0}", nombreConquista);
-    			return mensaje;
+    			if (caminoMasCorto != null)
+    			{
+        			// Realiza el movimiento de la flota a lo largo del camino
+        			for (int i = 0; i < caminoMasCorto.Count - 1; i++)
+        			{
+            				Planeta planetaActual = caminoMasCorto[i];
+            				Planeta planetaSiguiente = caminoMasCorto[i + 1];
+        			}
+        			string nombreConquista = planetaObjetivo.ObtenerNombre();
+        			string mensaje = string.Format("Se realizó correctamente la conquista del planeta: {0}", nombreConquista);
+        			return mensaje;
+	    		}
+        		else
+   			{
+        			// No se encontró un camino, devuelve un mensaje de error
+        			return "No se pudo encontrar un camino hacia el objetivo.";
+    			}
 		}
 		
 		public string Consulta1(ArbolGeneral<Planeta> arbol, Planeta botPlaneta, Planeta planeta)
@@ -107,16 +113,15 @@ namespace TP_obligatorio
 		
 		
 		//obtener camino del bot hacia la raiz
-		private List<Planeta> ObtenerCamino(ArbolGeneral<Planeta> arbol, Planeta botPlaneta)
+		private List<Planeta> ObtenerCamino(ArbolGeneral<Planeta> arbol, Planeta planeta)
 		{
     			List<Planeta> camino = new List<Planeta>();
-    			Planeta nodoActual = botPlaneta;
+    			Planeta nodoActual = planeta;
     			while (nodoActual != null)
     			{
         			camino.Add(nodoActual);
         			if (nodoActual.Equals(arbol.Dato))
             				break; // se corta una vez encontrada la raiz
-        			nodoActual = nodoActual.Raiz;
     			}
 
     			camino.Reverse(); // Invertimos 
