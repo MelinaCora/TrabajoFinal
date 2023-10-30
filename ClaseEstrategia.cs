@@ -128,23 +128,7 @@ namespace TP_obligatorio
     			return camino;
 		}
   
-		private Planeta EncontrarPlanetaMenorFlotas(List<Planeta> descendientes)
-		{
-    			int menosFlotas = descendientes[0].ObtenerFlotas();
-   	 		Planeta planetaMenorFlotas = descendientes[0];
-
-    			foreach (var planetax in descendientes)
-    			{
-        			int flotasPlaneta = planetax.ObtenerFlotas();
-        			if (flotasPlaneta < menosFlotas)
-        			{
-            				menosFlotas = flotasPlaneta;
-            				planetaMenorFlotas = planetax;
-        			}
-    			}
-    			return planetaMenorFlotas;
-		}
-  		//metodo para verificar quien tiene la victoria
+		//metodo para verificar quien tiene la victoria
   		public void VerificarVictoria(ArbolGeneral<Planeta> arbol)
     		{
       			int planetasIA=0);
