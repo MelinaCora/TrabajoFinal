@@ -14,28 +14,21 @@ namespace TP_obligatorio
     		}
 		
 		//metodos
-  		public string CalcularMoviemiento (ArbolGeneral<Planeta> arbol, Planeta BotPlaneta, Planeta planetaJugador)//cuerpo de la estrategia
+  		public string CalcularMoviemiento (ArbolGeneral<Planeta> arbol, Planeta botPlaneta, Planeta planetaObjetivo)//cuerpo de la estrategia
 		{
-			// Encuentra el camino más corto desde BotPlaneta hasta planetaObjetivo
-    			List<Planeta> caminoMasCorto = ObtenerCamino(arbol,planetaObjetivo);
-
-    			if (caminoMasCorto != null)
-    			{
-        			// Realiza el movimiento de la flota a lo largo del camino
-        			for (int i = 0; i < caminoMasCorto.Count - 1; i++)
-        			{
-            				Planeta planetaActual = caminoMasCorto[i];
-            				Planeta planetaSiguiente = caminoMasCorto[i + 1];
-        			}
-        			string nombreConquista = planetaObjetivo.ObtenerNombre();
-        			string mensaje = string.Format("Se realizó correctamente la conquista del planeta: {0}", nombreConquista);
-        			return mensaje;
-	    		}
-        		else
-   			{
-        			// No se encontró un camino, devuelve un mensaje de error
-        			return "No se pudo encontrar un camino hacia el objetivo.";
-    			}
+			//primero realizo la busqueda del camino desde la IA hasta la raiz			
+			List<Planeta> caminox =ObtenerCamino(arbol, botPlaneta);			
+			// otra lista para el camino del destino hasta la raiz			
+			List<Planeta> caminoy = ObtenerCamino(arbol, planetaObjetivo);
+			//combinamos las listas para generar un solo camino			
+			List<Planeta> caminoz = new List<Planeta>(caminox);
+			caminoz.AddRange(caminoy);			
+			//obtengo las posiciones de ambos en el camino			
+			int indiceBot = caminoz.IndexOf(botPlaneta);
+			int indiceObjetivo = caminoz.IndexOf(planetaObjetivo);
+			//defino el nuevo camino desde el bot hasta 
+			List<Planeta> caminoFinal = caminoz.GetRange(indiceBot, indiceObjetivo - indiceBot + 1);
+        		return caminoFinal;
 		}
 		
 		public string Consulta1(ArbolGeneral<Planeta> arbol, Planeta botPlaneta, Planeta planeta)
