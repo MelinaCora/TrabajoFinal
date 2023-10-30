@@ -38,7 +38,7 @@ namespace TP_obligatorio
             		
 			//armo el arbol general
 			
-            		ArbolGeneral Arbol1= new ArbolGeneral();
+            		ArbolGeneral <Planeta> Arbol1= new ArbolGeneral();
             		Arbol1.AgregarHijo(planetaIA1); //raiz
             		//nivel 1
             		Arbol1.AgregarHijoAunDeterminadoNodo(planetaIA1,planetaIA5); 
