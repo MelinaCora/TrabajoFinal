@@ -61,6 +61,22 @@ namespace TP_obligatorio
 		{
 			return planetaOrigen;
 		}
+		public List<Planeta> ObtenerCamino(ArbolGeneral<Planeta> arbol, Planeta planeta)
+		{
+    			List<Planeta> camino = new List<Planeta>();
+
+    			Planeta nodoActual = planeta;
+
+    			while (nodoActual != null)
+    			{
+        			camino.Add(nodoActual);
+        			if (nodoActual.Equals(arbol.Dato))
+            			break; // se corta una vez encontrada la raiz
+    			}
+
+    			camino.Reverse(); // Invertimos 
+    			return camino;
+			}
 		
-	}
+		}
 }	
