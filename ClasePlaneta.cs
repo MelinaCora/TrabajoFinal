@@ -70,5 +70,9 @@ namespace TP_obligatorio
 			int cantidadNaves = Flota.ObtenerCantidadNaves();
     			cantidadNaves-=NavesParaDisminuir;
 		}
+		public void CambiarPropieda(string nuevaPropiedad)
+		{
+			Propiedad=nuevaPropiedad;			
+		}
 	}
 }
