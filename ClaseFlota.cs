@@ -6,11 +6,11 @@ namespace TP_obligatorio
 	public class Flota
 	{
 		//atributos
-		private string nombreFlota;
-		private int velocidad;
-		private int cantidadNaves;
+		private string NombreFlota;
+		private int Velocidad;
+		private int CantidadNaves;
 		
-		public Flota(string NombreFlota,int Velocidad,int CantidadNaves)
+		public Flota(string nombreFlota,int velocidad,int cantidadNaves)
 		{
 			NombreFlota=nombreFlota;
 			Velocidad= velocidad;
@@ -18,13 +18,13 @@ namespace TP_obligatorio
 		}
 
 		public string ObtenerNombreFlota(){
-			return nombreFlota;
+			return NombreFlota;
 		}
 		public int ObtenerVelocidad(){
-			return velocidad;
+			return Velocidad;
 		}
 		public int ObtenerCantidadNaves(){
-			return cantidadNaves;
+			return CantidadNaves;
 		}
 		
 
