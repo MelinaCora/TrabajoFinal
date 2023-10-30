@@ -13,7 +13,6 @@ namespace TP_obligatorio
 		private int Flotas{get;set;}
 		private int TasaCrecimiento{get;set;}
 		private List<Planeta> Hijos { get; set; }
-		public Planeta Raiz { get; set; } // Atributo para almacenar la raíz
 		
 		//constructor
 		public Planeta(string propiedad,string nombre,int poblacion,int flotas,int tasaCrecimiento)
@@ -69,17 +68,6 @@ namespace TP_obligatorio
 			return Propiedad.Equals("Blanco", StringComparison.OrdinalIgnoreCase);
 		}
 
-		//metodo para agregar flotas a los planetas
-		public void AgregarFlotas(int FlotasParaAgregar) 
-		{
-			Flotas+=FlotasParaAgregar;
-		}
-
-		//metodo para disminuir flotas
-		public void DisminuirFlotas(int FlotasParaDisminuir)
-		{
-			Flotas-=FlotasParaDisminuir;
-		}
 		public string ObtenerNombre()
     		{
         		return Nombre;
@@ -89,11 +77,6 @@ namespace TP_obligatorio
     		public int ObtenerPoblacion()
     		{
         		return Poblacion;
-    		}
-
-		public int ObtenerFlotas()
-    		{
-    			return Flotas;
     		}
 	}
 }
