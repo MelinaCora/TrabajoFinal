@@ -9,7 +9,7 @@ namespace TP_obligatorio
 	{
 		//atributos
 		private Planeta planetaOrigen {get; set;}
-		private Plaeta planetaDestino {get;set;}
+		private Planeta planetaDestino {get;set;}
 		private int turno {get;set;}
 		public Flota Flota {get; set;}
 		
