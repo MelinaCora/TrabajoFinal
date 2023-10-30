@@ -59,5 +59,16 @@ namespace TP_obligatorio
     			int totalnaves=Flota.ObtenerCantidadNaves();
     			return totalnaves;
     		}
+		public void AgregarNaves(int NavesParaAgregar) 
+		{
+    			int cantidadNaves = Flota.ObtenerCantidadNaves();
+    			cantidadNaves+=NavesParaAgregar;
+		}
+		
+		public void DisminuirNaves(int NavesParaDisminuir)
+		{
+			int cantidadNaves = Flota.ObtenerCantidadNaves();
+    			cantidadNaves-=NavesParaDisminuir;
+		}
 	}
 }
