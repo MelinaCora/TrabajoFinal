@@ -33,8 +33,8 @@ namespace TP_obligatorio
 				{
 					// Realizar interacción con el planeta objetivo 
 					planetaActual.AgregarNaves(siguientePlaneta.naves());
-					siguientePlaneta.naves()=0;
-					siguientePlaneta.ObtenerPropiedad()="Azul";
+					siguientePlaneta.DisminuirNaves(siguientePlaneta.naves());
+					siguientePlaneta.CambiarPropiedad("Azul");
 			
 				}
 				if (siguientePlaneta.EsPlanetadelaIA()){
